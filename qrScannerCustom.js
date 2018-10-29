@@ -8,7 +8,8 @@ import {
   Platform,
   TouchableOpacity,
   Dimensions,
-  Image
+  Image,
+  Alert
 } from 'react-native';
 import {QRscanner} from 'react-native-qr-scanner';
 import {QRreader} from 'react-native-qr-scanner';
@@ -57,7 +58,16 @@ export default class qrScannerCustom extends Component {
   //console.log(responseJson);
   if (!responseJson.vin) {
 
-    Alert.alert('Enter valid data');
+    Alert.alert(
+      'Alert',
+      'Not valid Qr Code',
+      [
+        {text: 'OK', onPress: () => {this.props.navigation.goBack()}},
+      ],
+      { cancelable: false }
+    )
+
+    // Alert.alert('Not valid Qr Code');
 
   }else {
 
